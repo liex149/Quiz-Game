@@ -5,7 +5,7 @@ let score = 0;
 let secondsLeft = 60;
 let i = 0
 
-let divEl = document.createElement('div')
+let divEl = document.createElement('div');
 let divElA = document.createElement('div');
 let divElB = document.createElement('div');
 let divElC = document.createElement('div');
@@ -16,6 +16,9 @@ let ViewScore = document.createElement('div');
 // sections to each page
 let sectionEl = document.createElement('section');
 let sectionEl2 = document.createElement('section');
+
+let scoreArray = [];
+let initial = [];
 
 let questions = [
     {
@@ -166,23 +169,22 @@ function renderScore() {
 
 }
 
-
-function renderScore() {
-    sectionEl3.remove();
-    body.appendChild(sectionEl4);
-    sectionEl4.textContent = ""
-    sectionEl4.appendChild(divElE);
-    divElE.appendChild(clear).textContent = 'clear';
-    divElE.appendChild(goBack).textContent = 'Go Back';
-    for (let index = 0; index < scoreArray.length; index++) {
-        let sc = scoreArray[index];
-        let init = initial[index];
-        let li = document.createElement('li');
-        li.textContent = 'INITIAL: ' + init + ' | SCORE: ' + sc;
-        sectionEl4.appendChild(li);
+function init() {
+    let storedInitals = JSON.parse(localStorage.getItem('initials'));
+    let storedScores = JSON.parse(localStorage.getItem('scores'));
+    if (storedScores !== null) {
+        scoreArray = storedScores;
     }
-
+    if (storedInitals !== null) {
+        initial = storedInitals;
+    }
+    
 }
+function storeScores() {
+    localStorage.setItem('initials', JSON.stringify(initial));
+    localStorage.setItem('scores', JSON.stringify(scoreArray));
+}
+
 //this is what happens when we click the button
 button.addEventListener('click', function () {
 
