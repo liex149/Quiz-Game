@@ -73,10 +73,10 @@ let questions = [
 sectionEl4.remove();
 // this is where we appendchild to elements
 body.appendChild(headerEl);
-headerEl.appendChild(ViewScore).textContent = "VIEW SCORE"
+headerEl.appendChild(ViewScore).textContent = 'VIEW SCORE'
 headerEl.appendChild(timeDiv).textContent = ' '
 body.appendChild(sectionEl);
-sectionEl.appendChild(hEl).textContent = "One Piece Quiz";
+sectionEl.appendChild(hEl).textContent = 'One Piece Quiz';
 sectionEl.appendChild(divEl).textContent = 'press to play';
 divEl.setAttribute('id', 'start')
 //Click handler (Start Page button)
@@ -88,7 +88,7 @@ divEl.setAttribute('id', 'start')
         let timerInterval = setInterval(function () {
             secondsLeft--;
             headerEl.appendChild(timeDiv);
-            timeDiv.textContent = "TIME: " + secondsLeft;
+            timeDiv.textContent = 'TIME: ' + secondsLeft;
             if (secondsLeft < 0 || i == questions.length) {
                 clearInterval(timerInterval);
                 headerEl.appendChild(timeDiv);
@@ -102,11 +102,11 @@ divEl.setAttribute('id', 'start')
 //Click handler (SectionEl2)
 sectionEl2.addEventListener('click', function (event) {
     let element = event.target;
-    if (element.getAttribute('id') == "cor") {
+    if (element.getAttribute('id') == 'cor') {
         i++;
         score = score + 100;
         return questionPopulator(i);
-    } else if (element.getAttribute('id') == "inc") {
+    } else if (element.getAttribute('id') == 'inc') {
         i++;
         secondsLeft = secondsLeft - 20;
         return questionPopulator(i);
@@ -124,20 +124,20 @@ sectionEl2.addEventListener('click', function (event) {
         sectionEl2.appendChild(hEl).textContent = questions[i].question;
         sectionEl2.appendChild(divElA).textContent = questions[i].A;
         if (questions[i].A == questions[i].answer) {
-            divElA.setAttribute("id", "cor");
-        } else divElA.setAttribute("id", "inc")
+            divElA.setAttribute('id', 'cor');
+        } else divElA.setAttribute('id', 'inc')
         sectionEl2.appendChild(divElB).textContent = questions[i].B;
         if (questions[i].B == questions[i].answer) {
-            divElB.setAttribute("id", "cor");
-        } else divElB.setAttribute("id", "inc")
+            divElB.setAttribute('id', 'cor');
+        } else divElB.setAttribute('id', 'inc')
         sectionEl2.appendChild(divElC).textContent = questions[i].C;
         if (questions[i].C == questions[i].answer) {
-            divElC.setAttribute("id", "cor");
-        } else divElC.setAttribute("id", "inc")
+            divElC.setAttribute('id', 'cor');
+        } else divElC.setAttribute('id', 'inc')
         sectionEl2.appendChild(divElD).textContent = questions[i].D;
         if (questions[i].D == questions[i].answer) {
-            divElD.setAttribute("id", "cor");
-        } else divElD.setAttribute("id", "inc")
+            divElD.setAttribute('id', 'cor');
+        } else divElD.setAttribute('id', 'inc')
     }
 }
 
@@ -156,7 +156,7 @@ function gameOver() {
 function renderScore() {
     sectionEl3.remove();
     body.appendChild(sectionEl4);
-    sectionEl4.textContent = ""
+    sectionEl4.textContent = ''
     sectionEl4.appendChild(divElE);
     divElE.appendChild(clear).textContent = 'clear';
     divElE.appendChild(goBack).textContent = 'Go Back';
@@ -218,7 +218,7 @@ goBack.addEventListener('click', function () {
     headerEl.appendChild(ViewScore);
     sectionEl4.remove();
     body.appendChild(sectionEl);
-    sectionEl.appendChild(hEl).textContent = "One Piece Quiz";
+    sectionEl.appendChild(hEl).textContent = 'One Piece Quiz';
     sectionEl.appendChild(divEl).textContent = 'press to play';
 });
 
