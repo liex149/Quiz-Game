@@ -4,6 +4,7 @@
 # Description
 This quiz is designed for the anime lovers out there. If you like anime, then here are some questions to test your knowledge. Choose the right answer and no penality will occur. If you choose the wrong anwer then you will get 20 seconds taken away from the time. Once time is 0 then game is over. 
 
+Link: https://liex149.github.io/Quiz-Game/ 
 
 # Installation
 N/A
