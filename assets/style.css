@@ -1,5 +1,5 @@
 * {
-    font-family: fantasy;
+    font-family: monospace;
   
   }
   
@@ -8,8 +8,8 @@
   }
   body{
     border: solid black 10px;
-    margin: 90px;
-    min-height: 800px;
+    margin: 50px;
+    min-height: 700px;
     background: rgb(186, 79, 79);
     
   }
@@ -45,3 +45,17 @@
     font-size: 20px;
     list-style: none;
   }
+  #cor, #inc, #start {
+    border: 1px solid;
+    width: 300px;
+    margin: 15px 0px;
+    text-align: center;
+    
+  }
+  #cor:hover, #inc:hover, #start:hover{
+    cursor: pointer;
+    background-color: black;
+    color: rgb(179, 78, 78);
+  }
+
+  

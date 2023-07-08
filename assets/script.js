@@ -1,4 +1,5 @@
 let body = document.querySelector('#intro');
+
 let hEl = document.createElement('h1');
 let headerEl = document.createElement('header');
 
@@ -75,9 +76,9 @@ body.appendChild(headerEl);
 headerEl.appendChild(ViewScore).textContent = "VIEW SCORE"
 headerEl.appendChild(timeDiv).textContent = ' '
 body.appendChild(sectionEl);
-sectionEl.appendChild(hEl).textContent = "Once Piece Quiz";
+sectionEl.appendChild(hEl).textContent = "One Piece Quiz";
 sectionEl.appendChild(divEl).textContent = 'press to play';
-
+divEl.setAttribute('id', 'start')
 //Click handler (Start Page button)
     divEl.addEventListener('click', function () {
         sectionEl.remove();
@@ -95,7 +96,7 @@ sectionEl.appendChild(divEl).textContent = 'press to play';
                 console.log(score);
                 return gameOver();
             }
-        }, 1000);
+        }, 500);
         return questionPopulator(i);
     });
 //Click handler (SectionEl2)
@@ -217,7 +218,7 @@ goBack.addEventListener('click', function () {
     headerEl.appendChild(ViewScore);
     sectionEl4.remove();
     body.appendChild(sectionEl);
-    sectionEl.appendChild(hEl).textContent = "Ready to Play?";
+    sectionEl.appendChild(hEl).textContent = "One Piece Quiz";
     sectionEl.appendChild(divEl).textContent = 'press to play';
 });
 
