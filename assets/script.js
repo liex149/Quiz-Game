@@ -49,6 +49,11 @@ let questions = [
         answer: 'To defeat Hawk Eye and become the greatest swordsman.',
     }
 ]
+let sectionEl4 = document.createElement('section');
+
+
+
+sectionEl4.remove();
 
 body.appendChild(headerEl);
 headerEl.appendChild(ViewScore).textContent = "VIEW SCORE"
@@ -57,8 +62,33 @@ headerEl.appendChild(timeDiv).textContent = ' '
 body.appendChild(sectionEl);
 sectionEl.appendChild(hEl).textContent = "Ready to Play?";
 sectionEl.appendChild(divEl).textContent = 'press to play';
-function questionPopulator(i) {
 
+    //Click handler (Start Page button)
+    divEl.addEventListener('click', function () {
+        sectionEl.remove();
+        ViewScore.remove();
+        body.appendChild(sectionEl2);
+        secondsLeft = 60;
+        let timerInterval = setInterval(function () {
+            secondsLeft--;
+            headerEl.appendChild(timeDiv);
+            timeDiv.textContent = "TIME: " + secondsLeft;
+            if (secondsLeft < 0 || i == questions.length) {
+                clearInterval(timerInterval);
+                headerEl.appendChild(timeDiv);
+                timeDiv.textContent = 'Game Over';
+
+                console.log(score);
+                return gameOver();
+            }
+
+        }, 500);
+
+        return questionPopulator(i);
+
+    });
+
+    function questionPopulator(i) {
     if (i == questions.length || secondsLeft < 1) {
         return gameOver();
     } else {
@@ -85,30 +115,23 @@ function questionPopulator(i) {
         } else divElD.setAttribute("id", "inc")
     }
 }
-//Click handler (Start Page button)
-divEl.addEventListener('click', function () {
-    sectionEl.remove();
-    ViewScore.remove();
-    body.appendChild(sectionEl2);
-    secondsLeft = 60;
-    let timerInterval = setInterval(function () {
-        secondsLeft--;
-        headerEl.appendChild(timeDiv);
-        timeDiv.textContent = "TIME: " + secondsLeft;
-        if (secondsLeft < 0 || i == questions.length) {
-            clearInterval(timerInterval);
-            headerEl.appendChild(timeDiv);
-            timeDiv.textContent = 'Game Over';
+function gameOver() {
+    //if we finished the last question,
+    //Wipe away sectionEl2
+    //Populate sectionEl3, the finish page
 
-            console.log(score);
-            return gameOver();
-        }
+    sectionEl2.remove();
+    sectionEl3.remove();
+    sectionEl4.remove();
 
-    }, 500);
+    body.appendChild(sectionEl3);
+    sectionEl3.appendChild(hEl).textContent = 'Congrats! Your score is: ' + score;
 
-    return questionPopulator(i);
 
-});
+    sectionEl3.appendChild(button).textContent = 'Enter initials here ';
+    sectionEl3.appendChild(inputEl);
+
+}
 
 //Click handler (SectionEl2)
 sectionEl2.addEventListener('click', function (event) {
@@ -123,4 +146,36 @@ sectionEl2.addEventListener('click', function (event) {
 
         return questionPopulator(i);
     }
+});
+
+function renderScore() {
+    sectionEl3.remove();
+    body.appendChild(sectionEl4);
+    sectionEl4.textContent = ""
+    sectionEl4.appendChild(divElE);
+    divElE.appendChild(clear).textContent = 'clear';
+    divElE.appendChild(goBack).textContent = 'Go Back';
+    for (let index = 0; index < scoreArray.length; index++) {
+        let sc = scoreArray[index];
+        let init = initial[index];
+        let li = document.createElement('li');
+        li.textContent = 'INITIAL: ' + init + ' | SCORE: ' + sc;
+        sectionEl4.appendChild(li);
+    }
+
+}
+//this is what happens when we click the button
+button.addEventListener('click', function () {
+
+    let initials = inputEl.value.trim();
+    if (initials === '') {
+        return;
+    }
+    initial.push(initials);
+    scoreArray.push(score);
+    inputEl.value = '';
+    // code to render here
+    storeScores();
+    renderScore();
+
 });
