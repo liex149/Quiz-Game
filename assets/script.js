@@ -109,3 +109,18 @@ divEl.addEventListener('click', function () {
     return questionPopulator(i);
 
 });
+
+//Click handler (SectionEl2)
+sectionEl2.addEventListener('click', function (event) {
+    let element = event.target;
+    if (element.getAttribute('id') == "cor") {
+        i++;
+        score = score + 100;
+        return questionPopulator(i);
+    } else if (element.getAttribute('id') == "inc") {
+        i++;
+        secondsLeft = secondsLeft - 20;
+
+        return questionPopulator(i);
+    }
+});
