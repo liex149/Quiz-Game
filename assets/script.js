@@ -16,6 +16,13 @@ let ViewScore = document.createElement('div');
 // sections to each page
 let sectionEl = document.createElement('section');
 let sectionEl2 = document.createElement('section');
+let sectionEl3 = document.createElement('section');
+
+let inputEl = document.createElement('input');
+let button = document.createElement('button');
+let clear = document.createElement('button');
+let goBack = document.createElement('button');
+
 
 let scoreArray = [];
 let initial = [];
@@ -92,6 +99,7 @@ sectionEl.appendChild(divEl).textContent = 'press to play';
         return questionPopulator(i);
 
     });
+
 //Click handler (SectionEl2)
 sectionEl2.addEventListener('click', function (event) {
     let element = event.target;
@@ -152,6 +160,7 @@ function gameOver() {
     sectionEl3.appendChild(inputEl);
 
 }
+
 function renderScore() {
     sectionEl3.remove();
     body.appendChild(sectionEl4);
@@ -200,3 +209,48 @@ button.addEventListener('click', function () {
     renderScore();
 
 });
+//this is what happens when we click the button
+button.addEventListener('click', function () {
+
+    let initials = inputEl.value.trim();
+    if (initials === '') {
+        return;
+    }
+    initial.push(initials);
+    scoreArray.push(score);
+    inputEl.value = '';
+    // code to render here
+    storeScores();
+    renderScore();
+
+});
+clear.addEventListener('click', function () {
+    sectionEl4.textContent = '';
+    localStorage.clear();
+    scoreArray = [];
+    initial = [];
+    renderScore();
+});
+goBack.addEventListener('click', function () {
+    goBack.remove();
+    score = 0;
+    i = 0;
+    secondsLeft = 60;
+    headerEl.textContent = '';
+    headerEl.appendChild(ViewScore);
+    sectionEl4.remove();
+
+    body.appendChild(sectionEl);
+    sectionEl.appendChild(hEl).textContent = "Ready to Play?";
+    sectionEl.appendChild(divEl).textContent = 'press to play';
+
+
+});
+ViewScore.addEventListener('click', function () {
+    sectionEl.remove();
+
+    renderScore();
+})
+
+
+init();
