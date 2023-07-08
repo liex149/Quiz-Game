@@ -1,7 +1,9 @@
 let body = document.querySelector('#intro');
 let hEl = document.createElement('h1');
 let headerEl = document.createElement('header');
-
+let score = 0;
+let secondsLeft = 60;
+let i = 0
 
 let divEl = document.createElement('div')
 let divElA = document.createElement('div');
@@ -87,6 +89,21 @@ sectionEl.appendChild(divEl).textContent = 'press to play';
         return questionPopulator(i);
 
     });
+//Click handler (SectionEl2)
+sectionEl2.addEventListener('click', function (event) {
+    let element = event.target;
+    if (element.getAttribute('id') == "cor") {
+        i++;
+        score = score + 100;
+        return questionPopulator(i);
+    } else if (element.getAttribute('id') == "inc") {
+        i++;
+        secondsLeft = secondsLeft - 20;
+
+        return questionPopulator(i);
+    }
+});
+
 
     function questionPopulator(i) {
     if (i == questions.length || secondsLeft < 1) {
@@ -132,21 +149,23 @@ function gameOver() {
     sectionEl3.appendChild(inputEl);
 
 }
-
-//Click handler (SectionEl2)
-sectionEl2.addEventListener('click', function (event) {
-    let element = event.target;
-    if (element.getAttribute('id') == "cor") {
-        i++;
-        score = score + 100;
-        return questionPopulator(i);
-    } else if (element.getAttribute('id') == "inc") {
-        i++;
-        secondsLeft = secondsLeft - 20;
-
-        return questionPopulator(i);
+function renderScore() {
+    sectionEl3.remove();
+    body.appendChild(sectionEl4);
+    sectionEl4.textContent = ""
+    sectionEl4.appendChild(divElE);
+    divElE.appendChild(clear).textContent = 'clear';
+    divElE.appendChild(goBack).textContent = 'Go Back';
+    for (let index = 0; index < scoreArray.length; index++) {
+        let sc = scoreArray[index];
+        let init = initial[index];
+        let li = document.createElement('li');
+        li.textContent = 'INITIAL: ' + init + ' | SCORE: ' + sc;
+        sectionEl4.appendChild(li);
     }
-});
+
+}
+
 
 function renderScore() {
     sectionEl3.remove();
