@@ -75,7 +75,7 @@ body.appendChild(headerEl);
 headerEl.appendChild(ViewScore).textContent = "VIEW SCORE"
 headerEl.appendChild(timeDiv).textContent = ' '
 body.appendChild(sectionEl);
-sectionEl.appendChild(hEl).textContent = "Ready to Play?";
+sectionEl.appendChild(hEl).textContent = "Once Piece Quiz";
 sectionEl.appendChild(divEl).textContent = 'press to play';
 
 //Click handler (Start Page button)
